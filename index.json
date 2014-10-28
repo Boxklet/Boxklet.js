@@ -1,0 +1,25 @@
+{
+  "doc_folder": "docs",
+  "home_page": "about_simple_doc.md",
+  "items": [{
+    "tirle": "About Simple Doc",
+    "titlezh": "关于 Simple Doc",
+    "category": "",
+    "doc": "about_simple_doc.md"
+  },{
+    "tirle": "Page Layout",
+    "titlezh": "页面结构",
+    "category": "",
+    "doc": ""
+  },{
+    "tirle": "About Simple Doc",
+    "titlezh": "关于 Simple Doc",
+    "category": "",
+    "doc": "about_simple_doc.md"
+  },{
+    "tirle": "About Simple Doc",
+    "titlezh": "关于 Simple Doc",
+    "category": "3",
+    "doc": "about_simple_doc.md"
+  }]
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0" /><!--禁止缩放-->
+	<title>Simple Doc</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/marked.min.js"></script>
+	<script>
+	if (typeof jQuery == 'undefined') { 
+		// 未加载远端 jQuery 时候加载本地 jQuery
+		var script = document.createElement("script");
+		script.type = "text/javascript";
+		script.src = "js/jquery-2.1.1.min.js";
+		document.getElementsByTagName('head')[0].appendChild(script);
+	} 
+	</script>
+	<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<article id="page-box" class="left100 height100 tr1">
+		<section id="index" class="height100 left tr1 absolute">
+			<div id="search-box" class="left">
+				<input id="search" type="search">
+			</div>
+			<div id="index-box" class="left relative">
+				<ol id="index-list" class="left tr3">
+					<li><span id="test">关于 Simple Doc</span></li>
+					<li><span id="test2">页面布局</span></li>
+					<li><span>页面布局</span>
+						<ol>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+							<li>Who's you daddy?</li>
+						</ol>
+					</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+					<li>页面布局</li>
+				</ol>
+				<ul id="search-list" class="left absolute tr3">
+					
+				</ul>
+			</div>
+			<footer id="footer" class="absolute"><a href="https://github.com/Kaiyuan/SimpleDoc">Simple Doc</a> is Open Source Software.</footer>
+			<div id="list-button" class="tr3"><div class="left">&nbsp;</div></div>
+		</section>
+		<section id="main-box" class="height100 right relative">
+			<!-- <div id="Main-tool" class="left100 absolute"></div> -->
+			<article id="main" class="tr1">
+				&nbsp;
+			</article>
+		</section>
+	</article>
+	<div id="load-bar"><div id="loading">&nbsp;</div></div>
+	<div id="error-box">
+		<div id="error" class="tr1"><div id="error-text">&nbsp;</div></div>
+	</div>
+</body>
+</html>
