@@ -187,6 +187,11 @@ header, footer, .center {
 .top0 {top: 0 !important;}
 .left0 {left: 0 !important;}
 .right0 {right: 0 !important;}
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 .p20 {
 	padding: 10px 20px;
 	margin: 2em 0;
@@ -262,10 +267,10 @@ a, p>b, input, select, textarea, blockquote, .tr3, #index-box li>span {
 
 /*Index*/
 #index {
-	background-color: #f7f7f7;
+	background-color: #F1F5FA;
 	color: #444;
 	width: 320px;
-	z-index: 90;
+	z-index: 80;
 }
 #index a:link #index a:visited {
 	color: #444;
@@ -287,7 +292,7 @@ a, p>b, input, select, textarea, blockquote, .tr3, #index-box li>span {
 	line-height: 28px;
 	border-radius: 6px;
 	padding: 0 6px 0 24px;
-	background: #fff no-repeat 6px center url(../images/search.svg);
+	background: #fff no-repeat 6px center url(../images/search-icon.svg);
 	background-size: 16px;
 }
 #index-box {
@@ -331,9 +336,10 @@ ul[id*="-list"]>li {
 /*	height: 2.4em;
 	line-height: 2.4em;*/
 }
-#index-box li>span:hover {
+#index-box li>span:hover, #index-box li>a:hover {
 	color: #000;
-	background-color: #fff;
+	background-color: rgba(255,255,255,0.8);
+	border-radius: 4px;
 }
 #search-list {
 	background-color: #f7f7f7;
@@ -350,11 +356,11 @@ ul[id*="-list"]>li {
 #list-button {
 	position: absolute;
 	right: -32px;
-	top: 4px;
+	top: 40px;
 	width: 32px;
 	height: 32px;
 	padding-left: 1px;
-	background: #e7e7e7;
+	background: #F1F5FA;
 	border-radius: 0 6px 6px 0;
 	cursor: pointer;
 	display: none;
@@ -449,10 +455,10 @@ footer {
 	padding: 10px 0 0 0;
 	left: 0;
 	bottom: 0;
-	background-image: -webkit-linear-gradient(top,RGBA(247, 247, 247, 0),RGBA(247, 247, 247, 1) 14px,RGBA(247, 247, 247, 1));
-	background-image: -moz-linear-gradient(top,RGBA(247, 247, 247, 0),RGBA(247, 247, 247, 1) 14px,RGBA(247, 247, 247, 1));
-	background-image: -ms-linear-gradient(top,RGBA(247, 247, 247, 0),RGBA(247, 247, 247, 1) 14px,RGBA(247, 247, 247, 1));
-	background-image: linear-gradient(top,RGBA(247, 247, 247, 0),RGBA(247, 247, 247, 1) 14px,RGBA(247, 247, 247, 1));
+	background-image: -webkit-linear-gradient(top,RGBA(241, 245, 250, 0),RGBA(241, 245, 250, 1) 14px,RGBA(241, 245, 250, 1));
+	background-image: -moz-linear-gradient(top,RGBA(241, 245, 250, 0),RGBA(241, 245, 250, 1) 14px,RGBA(241, 245, 250, 1));
+	background-image: -ms-linear-gradient(top,RGBA(241, 245, 250, 0),RGBA(241, 245, 250, 1) 14px,RGBA(241, 245, 250, 1));
+	background-image: linear-gradient(top,RGBA(241, 245, 250, 0),RGBA(241, 245, 250, 1) 14px,RGBA(241, 245, 250, 1));
 }
 footer a {
 	color: #bbb;
@@ -464,9 +470,9 @@ footer a {
 	text-align: center;
 	overflow: auto;
 }
-#Main-tool {
-	height: 40px;
-	background: rgba(255,255,255,0.7);
+#main-post {
+	max-height: 100%;
+	overflow: auto;
 }
 #main {
 	padding: 40px 0;
@@ -476,8 +482,81 @@ footer a {
 	text-align: justify;
 }
 /*Main End*/
-/*Error*/
-#error-box {
+/*Tool*/
+#tool {
+	position: fixed;
+	width: calc(100% - 320px);
+	height: 40px;
+	top: 0;
+	right: 0;
+	background: rgba(255,255,255,0.9);
+	z-index: 79;
+}
+/*messages*/
+#main-messages-box {
+	width: calc(100% - 320px);
+	position: fixed;
+	top: 0;
+	right: 0;
+	max-height: 100%;
+	height: auto;
+	z-index: 90;
+	overflow: auto;
+}
+#main-messages {
+	height: auto;
+}
+#main-messages>ul {
+	width: 760px;
+	text-align: left;
+	height: auto;
+	padding-bottom: 36px;
+}
+#main-messages>ul>li {
+	position: relative;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 16px;
+	padding: 0 40px;
+	background: #7ECCFA no-repeat 8px center url(../images/information-icon.svg);
+	background-size: 24px;
+	border-radius: 6px;
+	box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+	color: #fff;
+	display: none;
+	/*opacity: 0;*/
+	transition: crop .1s;
+}
+#main-messages>ul>li.warning, .warning #popup {
+	background-color: #fdcd29;
+	background-image: url(../images/warning-icon.svg);
+}
+#main-messages>ul>li.error, .error #popup {
+	background-color: #fc000a;
+	background-image: url(../images/error-icon.svg);
+}
+#main-messages>ul>li.success, .success #popup {
+	background-color: #BADC52;
+	background-image: url(../images/checkmark-circle.svg);
+}
+#main-messages>ul>li a {
+	color: #fff;
+	border-bottom: 1px dotted #fff;
+}
+#main-messages>ul>li>span {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+	background: no-repeat center center url(../images/close-icon.svg);
+	background-size: 12px;
+}
+/*messages end*/
+/*Tool End*/
+/*popup*/
+#popup-box {
 	position: fixed;
 	width: 100%;
 	height: 100%;
@@ -488,7 +567,7 @@ footer a {
 	z-index: 100;
 	display: none;
 }
-#error {
+#popup {
 	position: absolute;
 	width: 260px;
 	height: 60px;
@@ -497,19 +576,20 @@ footer a {
 	top: 50%;
 	margin-left: -150px;
 	margin-top: -140px;
-	background: #fdcd29 no-repeat center 40px url(../images/error-icon.svg);
+	background: #7ECCFA no-repeat center 40px url(../images/information-icon.svg);
 	background-size: 96px;
 	text-align: center;
 	color: #fff;
-	/*font-size: 1.5em;*/
 	border-radius: 10px;
 	box-shadow: 0 10px 24px rgba(0,0,0,0.2);
 	line-height: 60px;
 	overflow: hidden;
 	transform:scale(0,0);
 }
-.show>#error {transform:scale(1,1);}
-#error::after, #error::before {
+.show>#popup {
+	transform:scale(1,1);
+}
+.warning #popup::after, .warning #popup::before, .error #popup::after, .error #popup::before {
 	content: "";
 	width: 100%;
 	height: 10px;
@@ -519,21 +599,22 @@ footer a {
 	opacity: 0.5;
 	transition: background-image .3s ease-in .1s;
 }
-#error::before {
+#popup::before {
 	top: 10px;
 	-webkit-animation: loadingbar .3s steps(8) infinite;
 	-moz-animation: loadingbar .3s steps(8) infinite;
 	-o-animation: loadingbar .3s steps(8) infinite;
 	animation: loadingbar .3s steps(8) infinite;
 }
-#error::after {
+#popup::after {
 	bottom: 10px;
 	-webkit-animation: errorafter .3s steps(8) infinite;
 	-moz-animation: errorafter .3s steps(8) infinite;
 	-o-animation: errorafter .3s steps(8) infinite;
 	animation: errorafter .3s steps(8) infinite;
 }
-#error>div {
+
+#popup>div {
 	line-height: 28px;
 	display: inline-block;
 	max-height: 60px;
@@ -555,7 +636,7 @@ footer a {
     from { background-position:0 0; }
     to { background-position: -10px 0; }
 }
-/*Error End*/
+/*popup End*/
 /*Load Bar*/
 #load-bar {
 	position: fixed;
@@ -625,7 +706,7 @@ footer a {
 	}
 	/*index End*/
 	/*Main*/
-	#main-box {
+	#main-box, #main-messages-box, #tool {
 		width: 100%;
 		margin: 0;
 		padding: 0;
@@ -638,6 +719,9 @@ footer a {
 }
 @media(max-width:568px) {
 	#main {text-align: left;}
+	#main-messages>ul {
+		width: 98%;
+	}
 }
 @media(max-width:320px) {
 	#index.list-show>#list-button {
