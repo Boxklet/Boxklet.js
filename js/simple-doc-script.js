@@ -90,28 +90,27 @@ jQuery(document).ready(function() {
 	//main 提示信息
 	function mainMessages (message,messageStyle) {
 		if (!message) {
-			message = "这里是提示信息！";
+			var message = "这里是提示信息！";
 		};
 
 		// messageStyle 有四种样式，分别是warning（黄色）、error（红色）、success（绿色）和 info（蓝色）
 		// style.css 中对应选择器为 #main-messages>ul>li
 		// 默认样式是 info，当值为空时候则使用默认样式。
 		if (messageStyle===1||messageStyle==="warning") {
-			messageStyle = "warning";
+			var messageStyle = "warning";
 		} else if (messageStyle===2||messageStyle==="error"){
-			messageStyle = "error";
+			var messageStyle = "error";
 		} else if(messageStyle===3||messageStyle==="success") {
-			messageStyle = "success";
+			var messageStyle = "success";
 		} else {
-			messageStyle = "";
+			var messageStyle = "";
 		};
+
 		mainMessagesBox.append('<li class="'+messageStyle+'"><div>'+message+'</div><span></span></li>');
 		var theMessage = $("#main-messages>ul>li:last-child");
 		theMessage.fadeIn(100,function () {
 			$("#main-messages-box").animate({scrollTop: theMessage.offset().top}, 100);
-		}).delay(3000).animate({top: '-40px',opacity: 'hide'},300,function () {
-    		$(this).detach();	//信息内容显示3秒后自动消失
-    	});
+		});
 
 	}
 
@@ -145,7 +144,7 @@ jQuery(document).ready(function() {
 	}
 
 	// 列出目录
-	function postIndex (argument) {
+	function postIndexList (argument) {
 		// body...
 	}
 
