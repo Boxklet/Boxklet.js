@@ -1,48 +1,40 @@
 var docIndex = "index.json";	//指定数据地址
+var docPrefix = 'SimpleDoc';
+var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
 
 jQuery(document).ready(function() {
 	var loadBar = $("#load-bar");
 	var loading = $("#loading");
+	var indexList = $('#Index-list');
 	var popupBox = $("#popup-box");
 	var popupText = $("#popup-text");
-	var mainDOM = $("#main");
-	var mainMessagesBox = $("#main-messages>ul");
+	var mainDOM = $("#Main");
+	var mainMessagesBox = $("#Main-Messages");
 
     //页面载入时候把 index.json 写到浏览器数据库
     dateCache(1);
 
-    //test
-    $("#test").click(function () {
-    	loadHomePage();
-    });
-    $("#test2").click(function () {
-    	popupWarning();
-    });
-    $("#test7").click(function () {
-    	popupWarning("黄色警告","warning");
-    });
-    $("#test8").click(function () {
-    	popupWarning("严重警告","error");
-    });
-    $("#test9").click(function () {
-    	popupWarning("成功弹出提示","success");
-    });
-    $("#test3").click(function () {
-    	mainMessages("Warning","warning");
-    });
-    $("#test4").click(function () {
-    	mainMessages("Errot","error");
-    });
-    $("#test5").click(function () {
-    	mainMessages("Success","success");
-    });
-    $("#test6").click(function () {
-    	mainMessages();
-    });
+    // 目录载入文件
+    $('#Index-list').on('click','li>span',function () {
+    	// var docFile = $(this).data('doc');
+    	loadDoc($(this).data('doc'));
+    })
+
+    // 正文内部链接
+    $('#Main').on('click','span.doclink',function () {
+    	// var docFile = $(this).data('doc');
+    	loadDoc($(this).data('doc'));
+    })
+
+    // 清除所有 localStorage
+    $('#Del-Cache').click(function () {
+    	// body...
+    })
 
 	// 显示或隐藏左边目录
-    $('#list-button').click(function() {
-        $('#index').toggleClass('list-show');
+    $('#Index-Button').click(function() {
+        $(this).toggleClass('show');
+        $('#Index-Box').toggleClass('show');
     });
 
     //关闭弹出窗口
@@ -53,8 +45,7 @@ jQuery(document).ready(function() {
     })
 
 	//弹出窗口
-	function popupWarning (popupWarnText,popupStyle) {
-		loadBar.hide()	//隐藏加载提示
+	function popupMessages (popupWarnText,popupStyle) {
 
 		//如果有提示信息则更改为对应信息
 		if (popupWarnText) {
@@ -81,8 +72,8 @@ jQuery(document).ready(function() {
 
 
     // main 顶部提示信息删除按钮
-    $("#main-messages").on("click","li>span",function () {
-    	$(this).parent().animate({top: '-40px',opacity: 'hide'},300,function () {
+    mainMessagesBox.on("click","li>span",function () {
+    	$(this).parent().animate({top:'-40px',opacity: '0', height: '0'},300,function () {
     		$(this).detach();
     	})
     })
@@ -94,7 +85,7 @@ jQuery(document).ready(function() {
 		};
 
 		// messageStyle 有四种样式，分别是warning（黄色）、error（红色）、success（绿色）和 info（蓝色）
-		// style.css 中对应选择器为 #main-messages>ul>li
+		// style.css 中对应选择器为 #Main-Messages-Box>ul>li
 		// 默认样式是 info，当值为空时候则使用默认样式。
 		if (messageStyle===1||messageStyle==="warning") {
 			var messageStyle = "warning";
@@ -107,29 +98,35 @@ jQuery(document).ready(function() {
 		};
 
 		mainMessagesBox.append('<li class="'+messageStyle+'"><div>'+message+'</div><span></span></li>');
-		var theMessage = $("#main-messages>ul>li:last-child");
+		var theMessage = $("#Main-Messages-Box>ul>li:last-child");
 		theMessage.fadeIn(100,function () {
-			$("#main-messages-box").animate({scrollTop: theMessage.offset().top}, 100);
+			$("#Main-Messages-Box").animate({
+				scrollTop: theMessage.offset().top
+			}, 300);
 		});
 
 	}
 
 	//把 index.json 内容写到浏览器数据库中，之后不用每次都重新访问 index.json
 	function dateCache (ishome,ifcachedocs) {
+		var locaDocVersion = localStorage.simple_doc_doc_version;
 		$.ajax({
 			url: docIndex,
 			cache: false,
 			dataType: "json",
-			beforeSend: function(){
-	            //发送 Ajax 之前显示加载提示
-	            loadBar.show();
-	        },
 	        // 载入成功
 			success: function (index_date) {
-				//把数据写入本地数据库
-				localStorage['simple_doc_doc_folder'] = index_date['doc_folder'];	//字符串不需要转换 json
-				localStorage['simple_doc_home_page'] = index_date['home_page'];
-				localStorage['simple_doc_items'] = JSON.stringify(index_date['items']);	//数组转换成 json
+				if (locaDocVersion===index_date['doc_version']) {
+					postIndexList();
+				} else{
+					//把数据写入本地数据库
+					localStorage[docPrefix+'_doc_version'] = index_date['doc_version'];
+					localStorage[docPrefix+'_doc_folder'] = index_date['doc_folder'];	//字符串不需要转换 json
+					localStorage[docPrefix+'_doc_home_page'] = index_date['doc_home_page'];
+					localStorage[docPrefix+'_doc_items'] = JSON.stringify(index_date['doc_items']);	//数组转换成 json
+					
+					postIndexList(index_date['doc_items']);//列出左边目录
+				};
 				if (ishome) {
 					// 当页面第一次载入时候加载首页内容
 					loadHomePage();
@@ -138,35 +135,71 @@ jQuery(document).ready(function() {
 
 			//载入失败时候
 			error: function () {
-				popupWarning("读取 "+docIndex+" 失败");
+				popupMessages("读取 "+docIndex+" 失败");
 			}
 		})
 	}
 
 	// 列出目录
-	function postIndexList (argument) {
-		// body...
+	function postIndexList (items) {
+		if (!items&&localStorage[docPrefix+'_doc_items']) {
+			var items = JSON.parse(localStorage[docPrefix+'_doc_items']);
+		};
+		if (typeof items == 'object'&&items.constructor==Array) {
+			//第一个循环是列出第一层目录 category 直为空的
+			for (var i = items.length - 1; i >= 0; i--) {
+				if (!items[i]['category']) {
+					var thisLi = ''
+					if (items[i]['doc']) {
+						var thisLi = '<li><span data-doc="'+items[i]['doc']+'">'+items[i]['title']+'</span><ol></ol></li>';
+					} else if (items[i]['link']) {
+						var thisLi = '<li><a href="'+items[i]['link']+'">'+items[i]['title']+'</a><ol></ol></li>';
+					} else {
+						var thisLi = '<li>'+items[i]['title']+'<ol></ol></li>';
+					};
+					indexList.append(thisLi);
+				};
+			};
+
+			// 第二次循环是列出 category 不为空的，并且添加在对应的分类下。
+			for (var i = items.length - 1; i >= 0; i--) {
+				if (items[i]['category']) {
+					var categoryLi = $('#Index-list>li:nth-child('+i+')>ol');
+					var thisLi = ''
+					if (items[i]['doc']) {
+						var thisLi = '<li><span data-doc="'+items[i]['doc']+'">'+items[i]['title']+'</span></li>';
+					} else if (items[i]['link']) {
+						var thisLi = '<li><a href="'+items[i]['link']+'">'+items[i]['title']+'</a></li>';
+					} else {
+						var thisLi = '<li>'+items[i]['title']+'</li>';
+					};
+					categoryLi.append(thisLi);
+				};
+			};
+		} else {
+			mainMessages('无法读取文档列表','warning');
+		};
 	}
 
 	//处理并载入对应页面内容 
 	function loadHomePage () {
 		//读取本地数据库中内容
 
-		if (localStorage.simple_doc_home_page) {
+		if (localStorage[docPrefix+'_doc_home_page']) {
 			//如果数据库中有指定首页页面则载入
-			loadDoc(localStorage.simple_doc_home_page);
+			loadDoc(localStorage[docPrefix+'_doc_home_page']);
 
-		} else if(localStorage.simple_doc_items){
-			var items_home_doc = JSON.parse(localStorage.simple_doc_items)[0]["doc"];
-			if (items_home_doc) {
+		} else if(localStorage[docPrefix+'_doc_items']){
+			var itemsHomeDoc = JSON.parse(localStorage[docPrefix+'_doc_items'])[0]["doc"];
+			if (itemsHomeDoc) {
 				//如果数据库中没有指定首页则载入 items 中第一个项目的内容
-				loadDoc(items_home_doc);
+				loadDoc(itemsHomeDoc);
 			} else{
 				// 如果没有指定主页内容并且 items 第一个项目也没指定 doc 弹出错误
-				popupWarning("数据库中没有指定主页内容！")
+				mainMessages("数据库中没有指定主页内容！",'warning')
 			};
 
-		};
+		} else {mainMessages("数据库中没有指定主页内容！",'warning')};
 
 
 	}
@@ -174,7 +207,7 @@ jQuery(document).ready(function() {
 	//修改 Main
 	function loadDoc (docLink,docTitle) {
 
-		var loadDocCache = localStorage[docLink];
+		var loadDocCache = localStorage[docPrefix+'_'+docLink];
 
 		if (loadDocCache) {
 			// 如果本地数据库对应内容则直接加载本地数据库中对应内容
@@ -183,8 +216,8 @@ jQuery(document).ready(function() {
 		} else {
 
 			//如果数据库中有指定文档存放文件夹则声明 docFolder
-			if (localStorage.simple_doc_doc_folder) {
-				var docFolder = localStorage.simple_doc_doc_folder+"/";
+			if (localStorage[docPrefix+'_doc_folder']) {
+				var docFolder = localStorage[docPrefix+'_doc_folder']+"/";
 			} else{
 				var docFolder = "";
 			};
@@ -194,16 +227,11 @@ jQuery(document).ready(function() {
 				cache: false, 
 				dataType: "html",
 
-				beforeSend: function(){
-		            //发送 Ajax 之前显示加载提示
-		            loadBar.show();
-		        },
-
 				success: function (postDate) {
 					editMain(postDate,true);
 				},
 				error: function () {
-					popupWarning(docLink+"<br>加载失败");	//提示错误
+					popupMessages(docLink+"<br>加载失败");	//提示错误
 				}
 			})
 		};
@@ -211,7 +239,6 @@ jQuery(document).ready(function() {
 
 	//修改 #main
 	function editMain (postDate,markdown) {
-		loadBar.fadeOut();	//隐藏加载提示
 		mainDOM.addClass("op0");	//先隐藏 main
 		setTimeout(function () {
 			// 隐藏后修改 main 内容，然后显示 main
@@ -227,5 +254,13 @@ jQuery(document).ready(function() {
 	function searchItems (keyword) {
 		// body...
 	}
+
+	// ajax Loadingbar
+	$(document).ajaxStart(function () {
+		loadBar.show();
+	})
+	$(document).ajaxSuccess(function () {
+		loadBar.fadeOut(100);
+	})
 
 });

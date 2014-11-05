@@ -19,74 +19,39 @@
 	<script type="text/javascript" src="js/simple-doc-script.js"></script>
 </head>
 <body>
-	<article id="page-box" class="left100 height100 tr1">
-		<!-- 目录 -->
-		<section id="index" class="height100 left tr1 absolute">
-			<!-- 搜索框 -->
-			<div id="search-box" class="left">
-				<input id="search" type="search">
-			</div>
-			<!-- 目录列表 -->
-			<div id="index-box" class="left relative">
-				<!-- 目录 -->
-				<ol id="index-list" class="left tr3">
-					<li><span id="test">关于 Simple Doc</span></li>
-					<li>弹出层提示
-						<ol>
-							<li><span id="test2">Info</span></li>
-							<li><span id="test7">Warning</span></li>
-							<li><span id="test8">Error</span></li>
-							<li><span id="test9">Success</span></li>
-						</ol>
-					</li>
-					<li>一般提示
-						<ol>
-							<li><span id="test3">Warning</span></li>
-							<li><span id="test4">Error</span></li>
-							<li><span id="test5">Success</span></li>
-							<li><span id="test6">Info</span></li>
-						</ol>
-					</li>
-					<li>页面布局</li>
-					<li>页面布局</li>
-					<li>页面布局</li>
-				</ol>
-				<!-- 目录列表结束 -->
-				<!-- 搜索结果列 -->
-				<ul id="search-list" class="left absolute tr3">
-					
-				</ul>
-				<!-- 搜索结果结束 -->
-			</div>
-			<!-- 底部信息 -->
-			<footer id="footer" class="absolute"><a href="https://github.com/Kaiyuan/SimpleDoc">Simple Doc</a> is Open Source Software.</footer>
-			<!-- 目录按钮 -->
-			<div id="list-button" class="tr3"><div class="left">&nbsp;</div></div>
-		</section>
-		<!-- 目录结束 -->
-		<!-- 正文内容 -->
-		<section id="main-box" class="height100 right relative">
-			<article id="main" class="tr1">
-				&nbsp;
-			</article>
-		</section>
-		<!-- 正文内容结束 -->
+	<!-- 网页顶部 -->
+	<header class="fixed">
+		<ul id="Menu" class="list-left left">
+			<li><a href="http://boxks.com" target="_blank">BOXKS</a></li>
+			<li><a href="https://github.com/Kaiyuan/SimpleDoc" target="_blank">Github</a></li>
+			<li></li>
+		</ul>
+		<ul id="Heaser-Tool" class="list-left right ovh tr3">
+			<li><button id="App-Cache" class="cup tr3"></button></li>
+			<li><button id="Del-Cache" class="cup tr3"></button></li>
+		</ul>
+	</header>
+	<!-- 网页顶部结束 -->
+	<!-- 正文内容 -->
+	<article id="Main-box" class="center Main-RDW">
+		<main id="Main" class="centerbox tr1 width100"></main>
 	</article>
-	<!-- 顶部工具栏 -->
-	<div id="tool" class="left100 absolute"></div>
-	<!-- 信息提示 -->
-	<section id="main-messages-box">
-		<div id="main-messages" class="left100 center">
-			<ul class="list centerbox"></ul>
-		</div>
-	</section>
-	<!-- 信息提示结束 -->
+	<!-- 正文内容结束 -->
+	<!-- 左边目录 -->
+	<article id="Index-Box" class="fixed height100 ova tr3">
+		<ol id="Index-list"></ol>
+	</article>
+	<div id="Index-Button" class="cup fixed tr3"><div></div></div>
+	<!-- 左边目录结束 -->
+	<!-- 正文信息提示 -->
+	<article id="Main-Messages-Box" class="fixed ova center top0 right0">
+		<ul id="Main-Messages" class="centerbox tr3"></ul>
+	</article>
+	<!-- 正文信息提示结束 -->
 	<!-- 加载提示 -->
-	<div id="load-bar"><div id="loading">&nbsp;</div></div>
+	<div id="load-bar" class="fixed top0 left0"><div id="loading">&nbsp;</div></div>
 	<!-- 弹出层 -->
-	<div id="popup-box">
-		<div id="popup" class="tr1"><div id="popup-text">&nbsp;</div></div>
-	</div>
+	<div id="popup-box"><div id="popup" class="tr1"><div id="popup-text">&nbsp;</div></div></div>
 	<!-- 弹出层结束 -->
 </body>
 </html>

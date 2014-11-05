@@ -163,10 +163,12 @@ body .op1 {
 	box-shadow: 0 0 5px rgba(255, 5, 0, .2), inset 0 0 15px rgba(255, 5, 0, .3) !important;
 	border-color: #e3afb1 !important;
 }
-.left, .left100, header, footer, article.center, .list-left li {float: left;}
-.left100, header, footer, article.center {width: 100%}
+.left, .left100, .list-left li {float: left;}
+.left100, header, .width100 {width: 100%}
 .right {float: right;}
 .height100 {height: 100%;}
+.ovh {overflow: hidden;}
+.ova {overflow: auto;}
 header, footer, .center {
 	text-align: center;
 }
@@ -177,6 +179,7 @@ header, footer, .center {
 .ta-left{
 	text-align: left;
 }
+.fixed {position: fixed;}
 .relative {position: relative;}
 .absolute,*::after, *::before{position: absolute;}
 .fs12, footer, #Sidebar, .gist-data *, .comment-author, .comment-meta, .reply {font-size: 12px !important;}
@@ -187,6 +190,7 @@ header, footer, .center {
 .top0 {top: 0 !important;}
 .left0 {left: 0 !important;}
 .right0 {right: 0 !important;}
+.cup {cursor: pointer;}
 .ellipsis {
 	white-space: nowrap;
 	overflow: hidden;
@@ -239,7 +243,7 @@ input, textarea {
 input[type="submit"] {
 	cursor: pointer;
 }
-a, p>b, input, select, textarea, blockquote, .tr3, #index-box li>span {
+a, p>b, input, select, textarea, blockquote, .tr3, #Index-Box li>span {
 	-webkit-transition: all .3s;
 	-moz-transition: all .3s;
 	-o-transition: all .3s;
@@ -264,112 +268,111 @@ a, p>b, input, select, textarea, blockquote, .tr3, #index-box li>span {
             filter: blur(5px);    
 }
 /* PAGE */
-
-/*Index*/
-#index {
-	background-color: #F1F5FA;
-	color: #333;
-	width: 320px;
-	z-index: 80;
-}
-#search-box {
+/*Header*/
+header {
+	top: 0;
+	left: 0;
 	height: 40px;
-	text-align: center;
-	/*background-color: #e7e7e7;*/
-	line-height: 34px;
-	width: 320px;
-	box-shadow: inset -1px -1px 0 rgba(0,0,0,0.05);
-	overflow: hidden;
+	line-height: 40px;
+	background-color: #fff;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
+	z-index: 90;
 }
-#search-box>input {
+#Menu li {
+	padding: 0 10px;
+}
+#Heaser-Tool {
+	width: 40px;
+	height: 0;
+	padding-top: 40px;
+	margin-right: 4px;
+	background: #fff no-repeat center 12px url(../images/tool.svg);
+	background-size: 16px;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
+	opacity: 0.5;
+}
+#Heaser-Tool:hover {
+	height: 80px;
+	box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	border-radius: 6px;
+	opacity: 1;
+}
+#Heaser-Tool button {
+	width: 40px;
+	height: 40px;
+	background: #fff no-repeat center center;
+	background-size: 16px;
+	border-width: 0;
 	margin: 0;
 	padding: 0;
-	width: 96%;
-	height: 28px;
-	line-height: 28px;
-	border-radius: 6px;
-	padding: 0 6px 0 24px;
-	background: #fff no-repeat 6px center url(../images/search-icon.svg);
-	background-size: 16px;
+	border: 0;
+	opacity: 0.5;
+	display: block;
 }
-#index-box {
-	height: calc(100% - 40px);
-	overflow: hidden;
+#Heaser-Tool button:hover {
+	opacity: 1;
+}
+#Heaser-Tool #App-Cache {
+	background-image: url(../images/download.svg);
+}
+#Heaser-Tool #Del-Cache {
+	background-image: url(../images/delete-cache.svg);
+}
+/*Header End*/
+/*Index*/
+#Index-Box {
+	top: 0;
+	left: 0;
+	width: 240px;
+	padding-right: 1px;
+	background-color: #fff;
+	box-shadow: inset -1px 0 0 rgba(0,0,0,0.1);
 	font-size: 12px;
-	width: 320px;
-	box-shadow: inset -1px 0 0 rgba(0,0,0,0.05);
+	z-index: 89;
 }
-#index-box a {
-	color: #333;
+#Index-list {
+	margin: 50px 0;
 }
-ol[id*="-list"],ul[id*="-list"] {
-	width: 280px;
-	margin: 0;
-	padding-top: 16px;
-	padding-bottom: 40px;
-	height: calc(100% - 56px);
-	overflow: auto;
-}
-#index-list>li {
+#Index-Box>ol>li {
 	list-style-type: upper-roman;
 }
-ul[id*="-list"] {
-	padding: 0 16px;
-	width: 320px;
+#Index-Box ol {
+	padding-left: 30px;
 }
-ul[id*="-list"]>li {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+#Index-Box ol ol {
+	padding-left: 15px;
 }
-#index-box li {
-}
-#index-box li>a {
-	display: block;
-	padding: 0.2em 0;
-}
-#index-box li>span {
-	cursor: pointer;
-	display: block;
-	margin-right: 8px;
-	box-shadow: -4px 0 0 rgba(230, 235, 242, 0);
-}
-#index-box li>span:hover, #index-box li>a:hover {
-	/*color: #000;*/
-	background-color: rgba(230, 235, 242, 1);
+#Index-Box ol a, #Index-Box ol span {
+	background-color: rgba(247, 247, 247, 0);
+	box-shadow: -4px 0 0 rgba(247, 247, 247, 0);
+	margin-right: 6px;
 	border-radius: 4px;
-	box-shadow: -4px 0 0 rgba(230, 235, 242, 1);
+	display: block;
+	cursor: pointer;
 }
-#search-list {
-	background-color: #f7f7f7;
-	top: 0;
-	left: 100%;
+#Index-Box ol a:hover, #Index-Box ol span:hover {
+	background-color: rgba(247, 247, 247, 1);
+	box-shadow: -4px 0 0 rgba(247, 247, 247, 1);
 }
-.search-show>#seartch-list {
+#Index-Button {
 	left: 0;
-}
-.search-show>#index-list {
-	left: -100%;
-}
-/*Search End*/
-#list-button {
-	position: absolute;
-	right: -32px;
-	top: 40px;
+	top: 44px;
 	width: 32px;
 	height: 32px;
 	padding-left: 1px;
-	background: #F1F5FA;
+	background: #fff;
 	border-radius: 0 6px 6px 0;
 	cursor: pointer;
 	display: none;
+	z-index: 90;
+	box-shadow: inset -1px 0 0 rgba(0,0,0,0.1), inset 0 -1px 0 rgba(0,0,0,0.1), inset 0 1px 0 rgba(0,0,0,0.1);
 }
-#list-button>div {
+#Index-Button>div {
 	width: 32px;
 	height: 32px;
 }
 
-#list-button::after, #list-button::before, #list-button div  {
+#Index-Button::after, #Index-Button::before, #Index-Button div  {
 	content: "";
 	top: 50%;
 	left: 50%;
@@ -382,19 +385,19 @@ ul[id*="-list"]>li {
 	-o-transition: all .3s;
 	transition: all .3s;
 }
-#list-button div {
+#Index-Button div {
 	position: absolute;
 	width: 32px;
 	height: 32px;
 	/*border: 2px solid #aaa;*/
 	/*border-radius: 4px;*/
 }
-#list-button::after, #list-button::before, #list-button div::after, #list-button div::before {
+#Index-Button::after, #Index-Button::before, #Index-Button div::after, #Index-Button div::before {
 	width: 20px;
 	height: 2px;
 	background-color: #aaa;
 }
-#list-button div::after, #list-button div::before {
+#Index-Button div::after, #Index-Button div::before {
 	content: "";
 	top: -moz-calc(50% - 1px);
 	top: -webkit-calc(50% - 1px);
@@ -407,22 +410,22 @@ ul[id*="-list"]>li {
 	-o-transition: all .3s;
 	transition: all .3s;
 }
-#list-button::after {
+#Index-Button::after {
 	-webkit-transform: translate(-50%, -8px);
 	-moz-transform: translate(-50%, -8px);
 	-o-transform: translate(-50%, -8px);
 	transform: translate(-50%, -8px);
 }
-#list-button::before {
+#Index-Button::before {
 	-webkit-transform: translate(-50%, 6px);
 	-moz-transform: translate(-50%, 6px);
 	-o-transform: translate(-50%, 6px);
 	transform: translate(-50%, 6px);
 }
-.list-show>#list-button::after, .list-show>#list-button::before {
+#Index-Button.show::after, #Index-Button.show::before {
 	opacity: 0;
 }
-.list-show>#list-button div::after, .list-show>#list-button div::before {
+#Index-Button.show div::after, #Index-Button.show div::before {
     -webkit-transform-origin: center center;
     -moz-transform-origin: center center;
     -o-transform-origin: center center;
@@ -436,80 +439,69 @@ ul[id*="-list"]>li {
 	-o-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);*/
 }
-.list-show>#list-button div::after {
+#Index-Button.show div::after {
     -webkit-transform: rotateZ(45deg);
     -moz-transform: rotateZ(45deg);
     -o-transform: rotateZ(45deg);
     transform: rotateZ(45deg);
 }
-.list-show>#list-button div::before {
+#Index-Button.show div::before {
     -webkit-transform: rotateZ(-45deg);
     -moz-transform: rotateZ(-45deg);
     -o-transform: rotateZ(-45deg);
     transform: rotateZ(-45deg);
 }
-
 footer {
 	color: #bbb;
 	padding: 10px 0 0 0;
 	left: 0;
 	bottom: 0;
-	background-image: -webkit-linear-gradient(top,RGBA(241, 245, 250, 0),RGBA(241, 245, 250, 1) 14px,RGBA(241, 245, 250, 1));
-	background-image: -moz-linear-gradient(top,RGBA(241, 245, 250, 0),RGBA(241, 245, 250, 1) 14px,RGBA(241, 245, 250, 1));
-	background-image: -ms-linear-gradient(top,RGBA(241, 245, 250, 0),RGBA(241, 245, 250, 1) 14px,RGBA(241, 245, 250, 1));
-	background-image: linear-gradient(top,RGBA(241, 245, 250, 0),RGBA(241, 245, 250, 1) 14px,RGBA(241, 245, 250, 1));
+	background-image: -webkit-linear-gradient(top,RGBA(255, 255, 255, 0),RGBA(255, 255, 255, 1) 14px,RGBA(255, 255, 255, 1));
+	background-image: -moz-linear-gradient(top,RGBA(255, 255, 255, 0),RGBA(255, 255, 250, 1) 14px,RGBA(255, 255, 255, 1));
+	background-image: -ms-linear-gradient(top,RGBA(255, 255, 255, 0),RGBA(255, 255, 250, 1) 14px,RGBA(255, 255, 255, 1));
+	background-image: linear-gradient(top,RGBA(255, 255, 255, 0),RGBA(255, 255, 250, 1) 14px,RGBA(255, 255, 255, 1));
+	width: 99%;
 }
 footer a {
 	color: #bbb;
 }
 /*Index End*/
 /*Main*/
-#main-box {
-	width: calc(100% - 320px);
-	text-align: center;
-	overflow: auto;
+.Main-RDW {
+	margin-left: 240px;
 }
-#main>*, #main .p {
-	padding-right: calc((100% - 760px)/2);
-	padding-left: calc((100% - 760px)/2);
+#Main {
+	padding: 40px 0;
+	text-align: justify;
+}
+#Main>*, #Main .p {
+	margin-right: calc((100% - 760px)/2);
+	margin-left: calc((100% - 760px)/2);
 	width: 760px;
 	text-align: justify;
 }
-#main>.w100 {
+#Main>*>* {
+	max-width: 100%;
+}
+#Main>.w100 {
 	padding: 0;
 }
 /*Main End*/
-/*Tool*/
-#tool {
-	position: fixed;
-	width: calc(100% - 320px);
-	height: 40px;
-	top: 0;
-	right: 0;
-	background: rgba(255,255,255,0.9);
-	z-index: 79;
-}
 /*messages*/
-#main-messages-box {
-	width: calc(100% - 320px);
-	position: fixed;
-	top: 0;
-	right: 0;
+#Main-Messages-Box {
+	line-height: 1px;
+	width: calc(100% - 240px);
+	z-index: 91;
 	max-height: 100%;
-	height: auto;
-	z-index: 90;
-	overflow: auto;
-	line-height: 0;
+	overflow: hidden;
 }
-#main-messages {
-	height: auto;
-}
-#main-messages>ul {
+#Main-Messages-Box ul{
 	width: 760px;
+	margin: 0;
+	padding: 0;
 	text-align: left;
-	height: auto;
 }
-#main-messages>ul>li {
+#Main-Messages-Box>ul>li {
 	position: relative;
 	height: 40px;
 	line-height: 40px;
@@ -524,29 +516,28 @@ footer a {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: none;
-	/*opacity: 0;*/
 	transition: crop .1s;
 }
-#main-messages>ul>li:last-child {
+#Main-Messages-Box>ul>li:last-child {
 	margin-bottom: 36px;
 }
-#main-messages>ul>li.warning, .warning #popup {
+#Main-Messages-Box>ul>li.warning, .warning #popup {
 	background-color: #fdcd29;
 	background-image: url(../images/warning-icon.svg);
 }
-#main-messages>ul>li.error, .error #popup {
-	background-color: #fc000a;
+#Main-Messages-Box>ul>li.error, .error #popup {
+	background-color: #FF6669;
 	background-image: url(../images/error-icon.svg);
 }
-#main-messages>ul>li.success, .success #popup {
+#Main-Messages-Box>ul>li.success, .success #popup {
 	background-color: #BADC52;
 	background-image: url(../images/checkmark-circle.svg);
 }
-#main-messages>ul>li a {
+#Main-Messages-Box>ul>li a {
 	color: #fff;
 	border-bottom: 1px dotted #fff;
 }
-#main-messages>ul>li>span {
+#Main-Messages-Box>ul>li>span {
 	width: 40px;
 	height: 40px;
 	position: absolute;
@@ -556,7 +547,7 @@ footer a {
 	background: no-repeat center center url(../images/close-icon.svg);
 	background-size: 12px;
 }
-#main-messages>ul>li::after, #main-messages>ul>li::before{
+#Main-Messages-Box>ul>li::after, #Main-Messages-Box>ul>li::before{
 	content: "";
 	width: 10px;
 	height: 100%;
@@ -564,29 +555,29 @@ footer a {
 	opacity: 0.5;
 	transition: background-image .3s ease-in .1s;
 }
-#main-messages>ul>li.warning::before,#main-messages>ul>li.error::before {
+#Main-Messages-Box>ul>li.warning::before,#Main-Messages-Box>ul>li.error::before {
 	left: -5px;
 	background: url(../images/sargaBlanco.svg) 4px 0px;
 	background-size: 10px;
 }
-#main-messages>ul>li.warning::after,#main-messages>ul>li.error::after {
+#Main-Messages-Box>ul>li.warning::after,#Main-Messages-Box>ul>li.error::after {
 	right: -5px;
 	background: url(../images/sargaBlanco.svg) 4px 0px;
 	background-size: 10px;
 }
 /*messages end*/
-/*Tool End*/
 /*popup*/
 #popup-box {
-	position: fixed;
 	width: 100%;
 	height: 100%;
 	background: rgba(255,255,255,0.9) repeat center center url(../images/cross_bg.svg) fixed;
 	background-size: 100px 100px;
 	cursor: pointer;
-	/*box-shadow: inset 0 0 100px RGBA(253, 205, 41, 0.7);*/
 	z-index: 100;
 	display: none;
+	top: 0;
+	left: 0;
+	position: fixed;
 }
 #popup {
 	position: absolute;
@@ -670,7 +661,7 @@ footer a {
 	top: 0;
 	left: 0;
 	background-color: #6dc0f9;
-	visibility:hidden;
+	display: block;
 	z-index: 91;
 }
 #loading {
@@ -708,71 +699,85 @@ footer a {
 }
 /*Load Bar End*/
 @media(max-width:1090px) {
-	#page-box {
-		position: relative;
+	#Index-Box {
+		left: -240px;
 	}
-	/*index*/
-	#index {
-		position: absolute;
-		top: 0;
-		left: -320px;
-		width: 320px;
-	}
-	#index.list-show {
+	#Index-Box.show {
 		left: 0;
-		box-shadow: 0 0 28px rgba(0,0,0,0.3);
-		width: 320px;
+		box-shadow: 0 0 20px rgba(0,0,0,0.3);
 	}
-	#search-box {
-		box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);
+	#Index-Button.show {
+		left: 241px;
 	}
-	#index-box {
-		box-shadow: 0 0 0;
-	}
-	#list-button {
+	#Index-Button {
 		display: block;
 	}
-	/*index End*/
 	/*Main*/
-	#main-box, #main-messages-box, #tool {
-		width: 100%;
-		margin: 0;
-		padding: 0;
+	.Main-RDW {
+		margin-left: 0;
 	}
 	/*Main End*/
+	#Main-Messages-Box {
+		width: 100%;
+	}
 }
 @media(max-width:768px) {
-	#main>*, #main .p {
-		padding-right: 2%;
-		padding-left: 2%;
+	#Main>*, #Main .p {
+		margin-right: 2%;
+		margin-left: 2%;
 		width: 96%;
 		text-align: left;
 	}
-	#main>.w100 {
+	#Main>.w100 {
 		padding: 0;
 	}
-	#main-messages>ul {
+	#Main-Messages-Box>ul {
 		width: 98%;
 	}
 }
 @media(max-width:568px) {
-	#main {text-align: left;}
+	#Main {text-align: left;}
 }
-@media(max-width:320px) {
-	#index.list-show>#list-button {
+@media(max-width:230px) {
+	#Index#Index-Button.show {
 		right: 0px;
 	}
-	#main {
+	#Main {
 		width: 96%;
 		padding: 40px 0;
-	}
-	footer {
-		display: none;
 	}
 }
 /*设置打印样式*/
 @media print {
-	#index, #tool, #main-messages-box, #load-bar, #popup-box {
-		display: none;
+	/* 打印样式参考了 http://www.cocss.com/1564.html */
+	header, #Index-Box, #Main-Messages-Box, #Index-Button, #load-bar, #popup-box, footer {
+		display: none !important;
+	}
+	#Main>* {
+		text-align: justify;
+	}
+	h2, h3 { 
+		page-break-after: avoid; 
+	}
+	img {
+		max-width: 100% !important;
+	}
+	ul, img {
+		page-break-inside: avoid;
+	}
+	a::after, a::before {
+		position: static;
+	}
+	#Main a[href^=http]:after {
+    	content:" <" attr(href) "> ";	/* 链接会显示 URL */
+	}
+	#Main a[href^="#"]:after {
+		content: "";
+	}
+	$a:after > img {
+		content: "";
+	}
+	a:not(:local-link):after {
+		content:" <" attr(href) "> ";
 	}
 }

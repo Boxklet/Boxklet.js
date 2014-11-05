@@ -1,27 +1,35 @@
 {
+  "doc_version": "1.0",
   "doc_title": "Simple Doc",
   "doc_time": "",
   "doc_folder": "docs",
-  "home_page": "about_simple_doc.md",
-  "items": [{
-    "tirle": "About Simple Doc",
-    "titlezh": "关于 Simple Doc",
-    "category": "",
-    "doc": "about_simple_doc.md"
-  },{
-    "tirle": "Page Layout",
-    "titlezh": "页面结构",
-    "category": "",
-    "doc": ""
-  },{
-    "tirle": "About Simple Doc",
-    "titlezh": "关于 Simple Doc",
-    "category": "",
-    "doc": "about_simple_doc.md"
-  },{
-    "tirle": "About Simple Doc",
-    "titlezh": "关于 Simple Doc",
-    "category": "3",
-    "doc": "about_simple_doc.md"
-  }]
+  "doc_home_page": "about_simple_doc.md",
+  "doc_items": [
+    {
+      "title": "About Simple Doc",
+      "titlezh": "关于 Simple Doc",
+      "category": "",
+      "doc": "about_simple_doc.md"
+    },
+    {
+      "title": "Page Layout",
+      "titlezh": "页面结构",
+      "category": "",
+      "doc": ""
+    },
+    {
+      "title": "About Simple Doc",
+      "titlezh": "关于 Simple Doc",
+      "category": "",
+      "doc": "about_simple_doc.md"
+    },
+    {
+      "title": "About Simple Doc",
+      "titlezh": "关于 Simple Doc",
+      "category": "3",
+      "doc": "about_simple_doc.md"
+    }
+  ],
+  "doc_menu": [
+  ]
 }
