@@ -456,10 +456,10 @@ footer {
 	padding: 10px 0 0 0;
 	left: 0;
 	bottom: 0;
-	background-image: -webkit-linear-gradient(top,RGBA(255, 255, 255, 0),RGBA(255, 255, 255, 1) 14px,RGBA(255, 255, 255, 1));
-	background-image: -moz-linear-gradient(top,RGBA(255, 255, 255, 0),RGBA(255, 255, 250, 1) 14px,RGBA(255, 255, 255, 1));
-	background-image: -ms-linear-gradient(top,RGBA(255, 255, 255, 0),RGBA(255, 255, 250, 1) 14px,RGBA(255, 255, 255, 1));
-	background-image: linear-gradient(top,RGBA(255, 255, 255, 0),RGBA(255, 255, 250, 1) 14px,RGBA(255, 255, 255, 1));
+	background-image: -webkit-linear-gradient(top,rgba(255, 255, 255, 0),rgba(255, 255, 255, 1) 14px,rgba(255, 255, 255, 1));
+	background-image: -moz-linear-gradient(top,rgba(255, 255, 255, 0),rgba(255, 255, 250, 1) 14px,rgba(255, 255, 255, 1));
+	background-image: -ms-linear-gradient(top,rgba(255, 255, 255, 0),rgba(255, 255, 250, 1) 14px,rgba(255, 255, 255, 1));
+	background-image: linear-gradient(top,rgba(255, 255, 255, 0),rgba(255, 255, 250, 1) 14px,rgba(255, 255, 255, 1));
 	width: 99%;
 }
 footer a {
@@ -515,8 +515,13 @@ footer a {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	display: none;
-	transition: crop .1s;
+	/*display: none;*/
+	transform-origin: right top;
+	-webkit-transition: opacity .3s, transform .3s;
+	-moz-transition: opacity .3s, transform .3s;
+	-o-transition: opacity .3s, transform .3s;
+	transition: opacity .3s, transform .3s;
+	opacity: 1;
 }
 #Main-Messages-Box>ul>li:last-child {
 	margin-bottom: 36px;
@@ -564,6 +569,13 @@ footer a {
 	right: -5px;
 	background: url(../images/sargaBlanco.svg) 4px 0px;
 	background-size: 10px;
+}
+#Main-Messages-Box>ul>li.hide {
+	opacity: 0;
+}
+#Main-Messages-Box>ul>li.delete {
+	transform:rotateZ(15deg) translateY(-150%);
+	opacity: 0;
 }
 /*messages end*/
 /*popup*/

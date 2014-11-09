@@ -1,6 +1,6 @@
 var docIndex = "index.json";	//指定数据地址
 var docPrefix = 'SimpleDoc';
-var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+// var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
 
 jQuery(document).ready(function() {
 	var loadBar = $("#load-bar");
@@ -13,11 +13,18 @@ jQuery(document).ready(function() {
 
     //页面载入时候把 index.json 写到浏览器数据库
     dateCache(1);
+    // 清除所有 localStorage
+    $('#test1').click(function () {
+    	mainMessages('',3);
+    })
 
     // 目录载入文件
     $('#Index-list').on('click','li>span',function () {
-    	// var docFile = $(this).data('doc');
-    	loadDoc($(this).data('doc'));
+    	var thisFile = $(this).data('doc');
+    	if (thisFile) {
+    		loadDoc(thisFile);
+    	};
+    	
     })
 
     // 正文内部链接
@@ -73,9 +80,10 @@ jQuery(document).ready(function() {
 
     // main 顶部提示信息删除按钮
     mainMessagesBox.on("click","li>span",function () {
-    	$(this).parent().animate({top:'-40px',opacity: '0', height: '0'},300,function () {
-    		$(this).detach();
-    	})
+    	// 动画向上移动并同时透明度为0，然后折叠后删除
+    	$(this).parent().addClass('delete').delay(200).slideUp(300,function () {
+			$(this).detach();
+		})
     })
 
 	//main 提示信息
@@ -97,12 +105,12 @@ jQuery(document).ready(function() {
 			var messageStyle = "";
 		};
 
-		mainMessagesBox.append('<li class="'+messageStyle+'"><div>'+message+'</div><span></span></li>');
+		mainMessagesBox.append('<li class="'+messageStyle+' hide"><div>'+message+'</div><span></span></li>');
 		var theMessage = $("#Main-Messages-Box>ul>li:last-child");
-		theMessage.fadeIn(100,function () {
-			$("#Main-Messages-Box").animate({
-				scrollTop: theMessage.offset().top
-			}, 300);
+		$("#Main-Messages-Box").animate({
+			scrollTop: theMessage.offset().top
+		}, 200,function () {
+			theMessage.removeClass('hide');
 		});
 
 	}
@@ -231,7 +239,7 @@ jQuery(document).ready(function() {
 					editMain(postDate,true);
 				},
 				error: function () {
-					popupMessages(docLink+"<br>加载失败");	//提示错误
+					mainMessages(docLink+" 加载失败", 'warning');	//提示错误
 				}
 			})
 		};
@@ -259,7 +267,7 @@ jQuery(document).ready(function() {
 	$(document).ajaxStart(function () {
 		loadBar.show();
 	})
-	$(document).ajaxSuccess(function () {
+	$(document).ajaxStop(function () {
 		loadBar.fadeOut(100);
 	})
 
