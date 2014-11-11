@@ -11,11 +11,19 @@ jQuery(document).ready(function() {
 	var mainDOM = $("#Main");
 	var mainMessagesBox = $("#Main-Messages");
 
+
+	// Synchronous highlighting with highlight.js
+	// marked.setOptions({
+	// 	highlight: function (code) {
+	//     	return require('js/highlight.pack.js').highlightAuto(code).value;
+	// 	}
+	// });
+
     //页面载入时候把 index.json 写到浏览器数据库
     dateCache(1);
     // 清除所有 localStorage
     $('#test1').click(function () {
-    	mainMessages('',3);
+    	mainMessages('','warning');
     })
 
     // 目录载入文件
@@ -109,7 +117,7 @@ jQuery(document).ready(function() {
 		var theMessage = $("#Main-Messages-Box>ul>li:last-child");
 		$("#Main-Messages-Box").animate({
 			scrollTop: theMessage.offset().top
-		}, 200,function () {
+		}, 300,function () {
 			theMessage.removeClass('hide');
 		});
 
@@ -252,6 +260,11 @@ jQuery(document).ready(function() {
 			// 隐藏后修改 main 内容，然后显示 main
 			if (markdown) {
 				mainDOM.html(marked(postDate)).removeClass("op0");
+
+				// 语法高亮
+				$('#Main pre code').each(function(i, block) {
+					hljs.highlightBlock(block);
+				});
 			} else {
 				mainDOM.html(postDate).removeClass("op0");
 			};

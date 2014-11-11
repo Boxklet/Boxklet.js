@@ -1,8 +1,28 @@
-##Simple Doc
+##<span style="color:#FFB902;">S</span>imple <span style="color:#FFB902;">D</span>oc
 
-Simple Doc 是一个静态的文档程序，整个程序均为 HTML、 CSS 和 JavaScript 构成，利用 json 作为数据索引，支持 Markdown。适合文档内容较少的项目。因为所有操作都是使用 JavaScript 完成，所以速度取决于访客的电脑和所使用的浏览器而定。
+Simple Doc 是一个静态的文档程序，整个程序均为 `HTML`、 `CSS` 和 `JavaScript` 构成，利用 `json` 作为数据索引，支持 Markdown。适合文档内容较少的项目。因为所有操作都是使用 `JavaScript` 完成，所以速度取决于访客的电脑和所使用的浏览器而定。
 
 制作本程序的主要初衷是想整理一些游戏 Wiki 的中文档，并且需要方便查找文档内容。还能离线浏览并且不需要依附其他动态语言，可以托管到 Github Pages。
+
+```json
+{
+  "doc_version": "1.0",
+  "doc_title": "Simple Doc",
+  "doc_time": "",
+  "doc_folder": "docs",
+  "doc_home_page": "about_simple_doc.md",
+  "doc_items": [
+    {
+      "title": "About Simple Doc",
+      "titlezh": "关于 Simple Doc",
+      "category": "",
+      "doc": "about_simple_doc.md"
+    }
+  ],
+  "doc_menu": [
+  ]
+}
+```
 
 -----------
 

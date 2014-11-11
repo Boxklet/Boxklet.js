@@ -75,7 +75,7 @@ video, audio, input {
 	border:none;
 }
 p a, .post-main a, .click, span.doclink {color: #2C769E;cursor: pointer;}
-a:hover, .click:hover, .postmetadata li:hover, footer>a:hover {color: #4396cb;}
+a:hover, .click:hover, footer>a:hover {color: #4396cb;}
 p a:hover, .click:hover, span.doclink:hover {
 	color: #000;
 	background: #F0F2F3;
@@ -109,11 +109,50 @@ blockquote p {
 code, pre {
 	font-family: "Consolas New", "Liberation Mono", Courier, monospace !important;
 }
+pre {
+	line-height: 1.4em;
+}
 code {
 	background-color: #eaedf2;
-	padding: 0 0.3em;
-	border-radius: 5px;
+	border-radius: 4px;
 }
+p code {
+	color: #008080;
+	padding: 0 0.2em;
+	border-radius: 1px;
+	box-shadow: 0 0 0 2px #eaedf2;
+}
+code[class*="lang-"] {
+	position: relative;
+}
+code[class*="lang-"]::before {
+	color: #82A6A5;
+	background-color: #fff;
+	font-size: 12px;
+	position: absolute;
+	height: 18px;
+	line-height: 18px;
+	padding: 0 4px;
+	top: 0;
+	right: 6px;
+	border-radius: 0 0 4px 4px;
+}
+code[class*="lang-html"]::before {content: "HTML";}
+code[class*="lang-css"]::before {content: "CSS";}
+code[class*="lang-javascript"]::before {content: "JavaScript";}
+code[class*="lang-php"]::before {content: "PHP";}
+code[class*="lang-json"]::before {content: "JSON";}
+code[class*="lang-python"]::before {content: "Python";}
+code[class*="lang-swift"]::before {content: "Swift";}
+code[class*="lang-java"]::before {content: "Java";}
+code[class*="lang-applescript"]::before {content: "AppleScript";}
+code[class*="lang-go"]::before {content: "Go";}
+code[class*="lang-lua"]::before {content: "Lua";}
+code[class*="lang-less"]::before {content: "Less";}
+code[class*="lang-scss"]::before {content: "SCSS";}
+code[class*="lang-sql"]::before {content: "SQL";}
+code[class*="lang-ruby"]::before {content: "Ruby";}
+code[class*="lang-bash"]::before {content: "Bash";}
 .post-main>pre, .post-main>*>pre {
 	box-shadow: inset 0 1px 7px rgba(0,0,0,.1);
 	/*background: #272822;*/
@@ -244,10 +283,10 @@ input[type="submit"] {
 	cursor: pointer;
 }
 a, p>b, input, select, textarea, blockquote, .tr3, #Index-Box li>span {
-	-webkit-transition: all .3s;
-	-moz-transition: all .3s;
-	-o-transition: all .3s;
-	transition: all .3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 .tr1 {
 	-webkit-transition: all .1s;
@@ -256,10 +295,10 @@ a, p>b, input, select, textarea, blockquote, .tr3, #Index-Box li>span {
 	transition: all .1s;
 }
 .bgtr3 {
-	-webkit-transition: background .3s;
-	-moz-transition: background .3s;
-	-o-transition: background .3s;
-	transition: background .3s;
+	-webkit-transition: background 0.3s;
+	-moz-transition: background 0.3s;
+	-o-transition: background 0.3s;
+	transition: background 0.3s;
 }
 .blur {    
     -webkit-filter: blur(5px); /* Chrome, Opera */
@@ -285,22 +324,19 @@ header {
 	width: 40px;
 	height: 0;
 	padding-top: 40px;
-	margin-right: 4px;
-	background: #fff no-repeat center 12px url(../images/tool.svg);
+	background: #FDCD29 no-repeat center 12px url(../images/tool.svg);
 	background-size: 16px;
 	box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
-	opacity: 0.5;
 }
 #Heaser-Tool:hover {
 	height: 80px;
 	box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-	border-radius: 6px;
-	opacity: 1;
+	border-radius: 0 0 6px 6px;
 }
 #Heaser-Tool button {
 	width: 40px;
 	height: 40px;
-	background: #fff no-repeat center center;
+	background: none no-repeat center center;
 	background-size: 16px;
 	border-width: 0;
 	margin: 0;
@@ -380,10 +416,10 @@ header {
 	-moz-transform: translate(-50%, -50%);
 	-o-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
-	-webkit-transition: all .3s;
-	-moz-transition: all .3s;
-	-o-transition: all .3s;
-	transition: all .3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 #Index-Button div {
 	position: absolute;
@@ -405,10 +441,10 @@ header {
 	left: -moz-calc(50% - 10px);
 	left: -webkit-calc(50% - 10px);
 	left: calc(50% - 10px);
-	-webkit-transition: all .3s;
-	-moz-transition: all .3s;
-	-o-transition: all .3s;
-	transition: all .3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 #Index-Button::after {
 	-webkit-transform: translate(-50%, -8px);
@@ -474,6 +510,9 @@ footer a {
 	padding: 40px 0;
 	text-align: justify;
 }
+#Main p {
+	margin-bottom: 1.7em;
+}
 #Main>*, #Main .p {
 	margin-right: calc((100% - 760px)/2);
 	margin-left: calc((100% - 760px)/2);
@@ -505,27 +544,30 @@ footer a {
 	position: relative;
 	height: 40px;
 	line-height: 40px;
-	margin-top: 16px;
+	margin: 16px 0;
 	padding: 0 40px;
 	background: #7ECCFA no-repeat 8px center url(../images/information-icon.svg);
 	background-size: 24px;
 	border-radius: 6px;
-	box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+	box-shadow: 0 5px 14px rgba(0,0,0,0.2);
 	color: #fff;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	/*display: none;*/
+	-webkit-transform-origin: right top;
+	-moz-transform-origin: right top;
+	-o-transform-origin: right top;
 	transform-origin: right top;
-	-webkit-transition: opacity .3s, transform .3s;
-	-moz-transition: opacity .3s, transform .3s;
-	-o-transition: opacity .3s, transform .3s;
-	transition: opacity .3s, transform .3s;
+	-webkit-transition-property:opacity,transform;
+	-webkit-transition-duration:0.3s;
+	-moz-transition: opacity 0.3s ease, transform 0.3s ease;
+	-o-transition: opacity 0.3s ease, transform 0.3s ease;
+	transition: opacity 0.3s ease, transform 0.3s ease;
 	opacity: 1;
 }
-#Main-Messages-Box>ul>li:last-child {
+/*#Main-Messages-Box>ul>li:last-child {
 	margin-bottom: 36px;
-}
+}*/
 #Main-Messages-Box>ul>li.warning, .warning #popup {
 	background-color: #fdcd29;
 	background-image: url(../images/warning-icon.svg);
@@ -558,7 +600,7 @@ footer a {
 	height: 100%;
 	top: 0;
 	opacity: 0.5;
-	transition: background-image .3s ease-in .1s;
+	transition: background-image 0.3s ease .1s;
 }
 #Main-Messages-Box>ul>li.warning::before,#Main-Messages-Box>ul>li.error::before {
 	left: -5px;
@@ -572,9 +614,16 @@ footer a {
 }
 #Main-Messages-Box>ul>li.hide {
 	opacity: 0;
+/*	-webkit-transform:translateY(6px);
+	-moz-transform:translateY(6px);
+	-o-transform:translateY(6px);
+	transform:translateY(6px);*/
 }
 #Main-Messages-Box>ul>li.delete {
-	transform:rotateZ(15deg) translateY(-150%);
+	-webkit-transform:rotateZ(4deg) translate(20px, -180%);
+	-moz-transform:rotateZ(4deg) translate(20px, -180%);
+	-o-transform:rotateZ(4deg) translate(20px, -180%);
+	transform:rotateZ(4deg) translate(20px, -180%);
 	opacity: 0;
 }
 /*messages end*/
@@ -621,7 +670,7 @@ footer a {
 	background-size: 10px;
 	left: 0;
 	opacity: 0.5;
-	transition: background-image .3s ease-in .1s;
+	transition: background-image 0.3s ease .1s;
 }
 #popup::before {
 	top: 10px;
@@ -630,16 +679,16 @@ footer a {
 	bottom: 10px;
 }
 #popup::before {
-	-webkit-animation: loadingbar .3s steps(8) infinite;
-	-moz-animation: loadingbar .3s steps(8) infinite;
-	-o-animation: loadingbar .3s steps(8) infinite;
-	animation: loadingbar .3s steps(8) infinite;
+	-webkit-animation: loadingbar 0.3s steps(18) infinite;
+	-moz-animation: loadingbar 0.3s steps(18) infinite;
+	-o-animation: loadingbar 0.3s steps(18) infinite;
+	animation: loadingbar 0.3s steps(18) infinite;
 }
 #popup::after {
-	-webkit-animation: errorafter .3s steps(8) infinite;
-	-moz-animation: errorafter .3s steps(8) infinite;
-	-o-animation: errorafter .3s steps(8) infinite;
-	animation: errorafter .3s steps(8) infinite;
+	-webkit-animation: errorafter 0.3s steps(18) infinite;
+	-moz-animation: errorafter 0.3s steps(18) infinite;
+	-o-animation: errorafter 0.3s steps(18) infinite;
+	animation: errorafter 0.3s steps(18) infinite;
 }
 
 #popup>div {
@@ -686,12 +735,12 @@ footer a {
 	background: url(../images/sargaBlanco.svg);
 	background-size: 10px;
 	opacity: 0.3;
-	transition: opacity .2s ease-in .1s, background-image .3s ease-in .1s;
+	transition: opacity .2s ease-in .1s, background-image 0.3s ease-in .1s;
 	z-index: 1000;
-	-webkit-animation: loadingbar .3s steps(8) infinite;
-	-moz-animation: loadingbar .3s steps(8) infinite;
-	-o-animation: loadingbar .3s steps(8) infinite;
-	animation: loadingbar .3s steps(8) infinite;
+	-webkit-animation: loadingbar 0.3s steps(18) infinite;
+	-moz-animation: loadingbar 0.3s steps(18) infinite;
+	-o-animation: loadingbar 0.3s steps(18) infinite;
+	animation: loadingbar 0.3s steps(18) infinite;
 }
 @keyframes loadingbar {
     from { background-position:0 0; }
