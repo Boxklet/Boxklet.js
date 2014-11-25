@@ -1,15 +1,15 @@
 {
   "doc_version": "1.0",
-  "doc_title": "Simple Doc",
+  "doc_title": "Boxklet",
   "doc_time": "",
   "doc_folder": "docs",
-  "doc_home_page": "about_simple_doc.md",
+  "doc_home_page": "about_boxklet.md",
   "doc_items": [
     {
-      "title": "About Simple Doc",
-      "titlezh": "关于 Simple Doc",
+      "title": "About Boxklet",
+      "titlezh": "关于 Boxklet",
       "category": "",
-      "doc": "about_simple_doc.md"
+      "doc": "about_boxklet.md"
     },
     {
       "title": "Page Layout",
@@ -18,16 +18,16 @@
       "doc": ""
     },
     {
-      "title": "About Simple Doc",
-      "titlezh": "关于 Simple Doc",
+      "title": "About Boxklet",
+      "titlezh": "关于 Boxklet",
       "category": "",
-      "doc": "about_simple_doc.md"
+      "doc": "about_boxklet.md"
     },
     {
-      "title": "About Simple Doc",
-      "titlezh": "关于 Simple Doc",
+      "title": "About Boxklet",
+      "titlezh": "关于 Boxklet",
       "category": "3",
-      "doc": "about_simple_doc.md"
+      "doc": "about_boxklet.md"
     }
   ],
   "doc_menu": [

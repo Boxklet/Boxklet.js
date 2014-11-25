@@ -1,8 +1,6 @@
-var docIndex = "index.json";	//指定数据地址
-var docPrefix = 'SimpleDoc';
-// var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
-
 jQuery(document).ready(function() {
+	var docIndex = "index.json";	//指定数据地址
+	var docPrefix = 'Boxklet';	//indexedDB 名以及 localStorage 前缀
 	var loadBar = $("#load-bar");
 	var loading = $("#loading");
 	var indexList = $('#Index-list');
@@ -12,18 +10,29 @@ jQuery(document).ready(function() {
 	var mainMessagesBox = $("#Main-Messages");
 
 
-	// Synchronous highlighting with highlight.js
-	// marked.setOptions({
-	// 	highlight: function (code) {
-	//     	return require('js/highlight.pack.js').highlightAuto(code).value;
-	// 	}
-	// });
+	var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+	if(!window.indexedDB){
+	    mainMessages("你的浏览器不支持IndexedDB",'warning');
+	} else {
+		var docDB = window.indexedDB.open(docPrefix,1);
+	}
+
+	// indexedDB 事件
+	docDB.onerror = function (event) {
+		mainMessages('打开 '+docPrefix+' 数据库失败','error');
+		console.log('打开 %s 数据库失败', docPrefix);
+	}
 
     //页面载入时候把 index.json 写到浏览器数据库
     dateCache(1);
     // 清除所有 localStorage
     $('#test1').click(function () {
-    	mainMessages('','warning');
+    	mainMessages();
+    })
+
+    // Header Tool
+    $('#Tool-toggle').click(function () {
+    	$(this).parent().toggleClass('show');
     })
 
     // 目录载入文件
@@ -89,7 +98,7 @@ jQuery(document).ready(function() {
     // main 顶部提示信息删除按钮
     mainMessagesBox.on("click","li>span",function () {
     	// 动画向上移动并同时透明度为0，然后折叠后删除
-    	$(this).parent().addClass('delete').delay(200).slideUp(300,function () {
+    	$(this).parent().addClass('delete').delay(200).slideUp('fast',function () {
 			$(this).detach();
 		})
     })
@@ -117,7 +126,7 @@ jQuery(document).ready(function() {
 		var theMessage = $("#Main-Messages-Box>ul>li:last-child");
 		$("#Main-Messages-Box").animate({
 			scrollTop: theMessage.offset().top
-		}, 300,function () {
+		}, 'fast',function () {
 			theMessage.removeClass('hide');
 		});
 
@@ -125,7 +134,7 @@ jQuery(document).ready(function() {
 
 	//把 index.json 内容写到浏览器数据库中，之后不用每次都重新访问 index.json
 	function dateCache (ishome,ifcachedocs) {
-		var locaDocVersion = localStorage.simple_doc_doc_version;
+		var locaDocVersion = localStorage[docPrefix+'_doc_version'];
 		$.ajax({
 			url: docIndex,
 			cache: false,
@@ -134,13 +143,15 @@ jQuery(document).ready(function() {
 			success: function (index_date) {
 				if (locaDocVersion===index_date['doc_version']) {
 					postIndexList();
+					console.log('localStorage 数据不需要更新');
 				} else{
 					//把数据写入本地数据库
 					localStorage[docPrefix+'_doc_version'] = index_date['doc_version'];
 					localStorage[docPrefix+'_doc_folder'] = index_date['doc_folder'];	//字符串不需要转换 json
 					localStorage[docPrefix+'_doc_home_page'] = index_date['doc_home_page'];
 					localStorage[docPrefix+'_doc_items'] = JSON.stringify(index_date['doc_items']);	//数组转换成 json
-					
+					console.log('成功把基础数据写入 localStorage');
+
 					postIndexList(index_date['doc_items']);//列出左边目录
 				};
 				if (ishome) {
@@ -152,6 +163,7 @@ jQuery(document).ready(function() {
 			//载入失败时候
 			error: function () {
 				popupMessages("读取 "+docIndex+" 失败");
+				console.log("读取 %s 失败", docIndex);
 			}
 		})
 	}
@@ -192,8 +204,10 @@ jQuery(document).ready(function() {
 					categoryLi.append(thisLi);
 				};
 			};
+			console.log('成功读取并列出目录');
 		} else {
 			mainMessages('无法读取文档列表','warning');
+			console.log('无法读取 localStorage[%s _doc_items] 文档列表', docPrefix);
 		};
 	}
 
@@ -215,7 +229,9 @@ jQuery(document).ready(function() {
 				mainMessages("数据库中没有指定主页内容！",'warning')
 			};
 
-		} else {mainMessages("数据库中没有指定主页内容！",'warning')};
+		} else {
+			mainMessages("数据库中没有指定主页内容！",'warning')
+		};
 
 
 	}
@@ -228,6 +244,7 @@ jQuery(document).ready(function() {
 		if (loadDocCache) {
 			// 如果本地数据库对应内容则直接加载本地数据库中对应内容
 			editMain(loadDocCache,true);
+			console.log('成功读取本地数据库中对应文章');
 
 		} else {
 
@@ -245,9 +262,11 @@ jQuery(document).ready(function() {
 
 				success: function (postDate) {
 					editMain(postDate,true);
+					console.log('载入文章 %s 成功', docLink);
 				},
 				error: function () {
 					mainMessages(docLink+" 加载失败", 'warning');	//提示错误
+					console.log('载入文章 %s 失败', docLink);
 				}
 			})
 		};

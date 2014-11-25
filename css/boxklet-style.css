@@ -1,15 +1,15 @@
 @charset "utf-8";
 ::selection {
-    background:#eef1f5;
-    color:#000;
+    background:rgba(71, 157, 237, 0.6);
+    color:#fff;
 }
 ::-moz-selection {
-    background:#eef1f5;
-    color:#000;
+    background:rgba(71, 157, 237, 0.6);
+    color:#fff;
 }
 ::-webkit-selection {
-    background:#eef1f5;
-    color:#000;
+    background:rgba(71, 157, 237, 0.6);
+    color:#fff;
 }
 html, html>body {
 	margin: 0px !important;
@@ -20,7 +20,7 @@ html, html>body {
 body {
 	font-family: "Helvetica Neue", Ubuntu, "WenQuanYi Micro Hei", Helvetica,"Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei", "Apple LiGothic Medium", "SimHei", "ST Heiti", "WenQuanYi Zen Hei Sharp", Arial, sans-serif;
 	-webkit-font-smoothing:antialiased;
-	line-height: 1.8em;
+	line-height: 1.8rem;
 	background: #fff;
 }
 /*HEADER*/
@@ -29,12 +29,12 @@ h1,h2,h3,h4,h5,h6 {
 	font-weight: normal;
 	line-height: 1.333em;
 }
-h1{font-size: 2.8em;}
-h2{font-size: 2.4em;}
-h3{font-size: 2em;}
-h4{font-size: 1.6em;}
-h5{font-size: 1.2em;}
-h6{font-size: 1em;}
+h1{font-size: 2.8rem;}
+h2{font-size: 2.4rem;}
+h3{font-size: 2rem;}
+h4{font-size: 1.6rem;}
+h5{font-size: 1.2rem;}
+h6{font-size: 1rem;}
 /*HEADER END*/
 
 hr {
@@ -58,7 +58,7 @@ hr::after {
 	content: "-— ● ✤ ● —-";
 	color: #ccc;
 }
-sub,sup{font-size: .5em;}
+sub,sup{font-size: .5rem;}
 img {border-width: 0px;}
 img.shadow {
 	box-shadow: 0 5px 17px rgba(0, 0, 0, .3);
@@ -74,16 +74,20 @@ video, audio, input {
 	outline:none;
 	border:none;
 }
-p a, .post-main a, .click, span.doclink {color: #2C769E;cursor: pointer;}
+p a, #Main a, .click, span.doclink {
+	color: #479ded;
+	cursor: pointer;
+	border-bottom: 1px dotted #6cc0f9;
+}
 a:hover, .click:hover, footer>a:hover {color: #4396cb;}
-p a:hover, .click:hover, span.doclink:hover {
+/*p a:hover, .click:hover, span.doclink:hover {
 	color: #000;
 	background: #F0F2F3;
 	border-radius: 4px;
-	/*box-shadow: 0 0 0 3px rgba(231, 232, 235, .5);*/
-}
+	box-shadow: 0 0 0 3px rgba(231, 232, 235, .5);
+}*/
 #main p {
-	margin: 1em 0 2em 0;
+	margin: 1rem 0 2rem 0;
 }
 #main p>a, span.doclink {
 	border-bottom: 1px dotted #ccc;
@@ -93,24 +97,26 @@ article span.sup:hover {background-color: #fbf5c6;}
 i {border-bottom: 1px dotted #ddd;}
 i.fa {border-width: 0;}
 blockquote {
-	border-left: 3px solid #000;
 	background: #f9f9f9;
 	-webkit-margin-before: 0;
 	-webkit-margin-after: 0;
 	-webkit-margin-start: 0;
 	-webkit-margin-end: 0;
-	margin: 0 0 2em 0;
-	padding: 0.1em 0.5em 0.1em 1em;
+	margin: 0 0 2rem 0;
+	padding: 0.1rem 0 0.1rem 0;
+	border-radius: 0 4px 4px 0;
+	box-shadow: inset 3px 0 0 #479ded;
 }
-blockquote:hover{background-color: #eee;}
 blockquote p {
+	padding: 0.1rem 0.5rem 0.1rem 1rem;
 	margin: 1em 0 !important;
 }
 code, pre {
 	font-family: "Consolas New", "Liberation Mono", Courier, monospace !important;
 }
 pre {
-	line-height: 1.4em;
+	line-height: 1.4rem;
+	margin-bottom: 1.7rem;
 }
 code {
 	background-color: #eaedf2;
@@ -118,7 +124,7 @@ code {
 }
 p code {
 	color: #008080;
-	padding: 0 0.2em;
+	padding: 0 0.2rem;
 	border-radius: 1px;
 	box-shadow: 0 0 0 2px #eaedf2;
 }
@@ -126,8 +132,8 @@ code[class*="lang-"] {
 	position: relative;
 }
 code[class*="lang-"]::before {
-	color: #82A6A5;
-	background-color: #fff;
+	color: #fff;
+	background-color: #5AB0EE;
 	font-size: 12px;
 	position: absolute;
 	height: 18px;
@@ -161,16 +167,16 @@ code[class*="lang-bash"]::before {content: "Bash";}
 	text-shadow: 0 1px 1px rgba(0,0,0,.1);
 	overflow: hidden;
 	font-size: 12px;
-	line-height: 1.333em;
+	line-height: 1.333rem;
 	white-space: pre;
 	padding: 10px 20px;
 	border-radius: 6px;
-	margin: 1.333em 0 1.333em 0;
+	margin: 1.333rem 0 1.333rem 0;
 } 
 kbd {
 	border: 1px solid #e7e7e7;
 	border-radius: 4px;
-	padding: .1em .5em;
+	padding: .1rem .5rem;
 	margin: 0 3px;
 	background: #f5f5f5;
 	box-shadow: 0 1px 0 rgba(0,0,0,.15),0 1px 4px rgba(0,0,0,.1),inset 0 1px 1px rgba(255,255,255,1),inset 0 1px 5px rgba(255,255,255,.5);
@@ -237,7 +243,7 @@ header, footer, .center {
 }
 .p20 {
 	padding: 10px 20px;
-	margin: 2em 0;
+	margin: 2rem 0;
 	border-radius: 6px;
 }
 .main_text {
@@ -324,14 +330,21 @@ header {
 	width: 40px;
 	height: 0;
 	padding-top: 40px;
-	background: #FDCD29 no-repeat center 12px url(../images/tool.svg);
-	background-size: 16px;
+	background-color: #5AB0EE;
 	box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
 }
-#Heaser-Tool:hover {
+#Heaser-Tool.show {
 	height: 80px;
 	box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 	border-radius: 0 0 6px 6px;
+}
+#Tool-toggle {
+	width: 40px;
+	height: 40px;
+	top: 0;
+	right: 0;
+	background: no-repeat center center url(../images/tool.svg);
+	background-size: 16px;
 }
 #Heaser-Tool button {
 	width: 40px;
@@ -511,13 +524,16 @@ footer a {
 	text-align: justify;
 }
 #Main p {
-	margin-bottom: 1.7em;
+	/*margin-bottom: 1.7rem;*/
 }
 #Main>*, #Main .p {
 	margin-right: calc((100% - 760px)/2);
 	margin-left: calc((100% - 760px)/2);
 	width: 760px;
 	text-align: justify;
+}
+#Main>ul, #Main>ol {
+	width: 720px;
 }
 #Main>*>* {
 	max-width: 100%;
@@ -593,6 +609,14 @@ footer a {
 	cursor: pointer;
 	background: no-repeat center center url(../images/close-icon.svg);
 	background-size: 12px;
+	opacity: 0.7;
+	-webkit-transition: opacity 0.3s;
+	-moz-transition: opacity 0.3s;
+	-o-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+#Main-Messages-Box>ul>li>span:hover {
+	opacity: 1;
 }
 #Main-Messages-Box>ul>li::after, #Main-Messages-Box>ul>li::before{
 	content: "";
@@ -789,6 +813,9 @@ footer a {
 		width: 96%;
 		text-align: left;
 	}
+	#Main>ul, #Main>ol {
+		width: calc(96% - 40px);
+	}
 	#Main>.w100 {
 		padding: 0;
 	}
@@ -814,6 +841,13 @@ footer a {
 	header, #Index-Box, #Main-Messages-Box, #Index-Button, #load-bar, #popup-box, footer {
 		display: none !important;
 	}
+	blockquote, p>code {
+		border-width: 0 !important;
+		box-shadow: none !important;
+	}
+	pre>code {
+		background-color: #f6f6f6 !important;
+	}
 	#Main>* {
 		text-align: justify;
 	}
@@ -825,6 +859,9 @@ footer a {
 	}
 	ul, img {
 		page-break-inside: avoid;
+	}
+	p>a {
+		border-color: #000;
 	}
 	a::after, a::before {
 		position: static;

@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0" /><!-- 禁止缩放 -->
-	<title>Simple Doc</title>
+	<title>Boxklet</title>
 	<link rel="stylesheet" type="text/css" href="css/styles/github.css" media="screen, print"><!-- highlight语法高亮 -->
-	<link rel="stylesheet" type="text/css" href="css/simple-doc-style.css" media="screen, print">
+	<link rel="stylesheet" type="text/css" href="css/boxklet-style.css" media="screen, print">
 	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="js/highlight.pack.js"></script><!-- highlight语法高亮 -->
 	<script type="text/javascript" src="js/marked.min.js"></script><!-- Markdown 转换 -->
@@ -18,17 +18,18 @@
 		document.getElementsByTagName('head')[0].appendChild(script);
 	} 
 	</script>
-	<script type="text/javascript" src="js/simple-doc-script.js"></script>
+	<script type="text/javascript" src="js/boxklet-script.js"></script>
 </head>
 <body>
 	<!-- 网页顶部 -->
 	<header class="fixed">
 		<ul id="Menu" class="list-left left">
 			<li><a href="http://boxks.com" target="_blank">BOXKS</a></li>
-			<li><a href="https://github.com/Kaiyuan/SimpleDoc" target="_blank">Github</a></li>
+			<li><a href="https://github.com/Boxklet" target="_blank">Github</a></li>
 			<li></li>
 		</ul>
-		<ul id="Heaser-Tool" class="list-left right ovh tr3">
+		<ul id="Heaser-Tool" class="list-left right ovh tr3 relative">
+			<div id="Tool-toggle" class="absolute cup">&nbsp;</div>
 			<li><button id="App-Cache" class="cup tr3"></button></li>
 			<li><button id="Del-Cache" class="cup tr3"></button></li>
 		</ul>
